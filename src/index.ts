@@ -1,7 +1,7 @@
 import clc from "cli-color";
-import { loggercolored } from "./index.d";
+import ColoredLoggerClass, { loggercolored } from "./index.d";
 
-export default class ColoredLogger implements loggercolored.ColoredLogger {
+export default class ColoredLogger implements ColoredLoggerClass {
     private fnLog = function (msg: string | string[]) {
         if (typeof msg === "string") console.log(msg);
         if (Array.isArray(msg)) console.log(...msg);

@@ -9,9 +9,13 @@ export namespace loggercolored {
         }
     }
 
-    export abstract class ColoredLogger {
-        log(type: keyof IConfig, msg: string): string | string[]
-    }
-
     export type TFormatLogger = "DATE" | "MSG" | "TYPE"
+}
+
+export default class ColoredLogger {
+    constructor(
+        config: loggercolored.IConfig,
+        fnLog?: (msg: string | string[]) => void
+    )
+    log(type: keyof loggercolored.IConfig, msg: string): string | string[]
 }
