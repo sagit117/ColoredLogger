@@ -72,18 +72,3 @@ export default class ColoredLogger implements loggercolored.ColoredLogger {
         }
     }
 }
-
-const config: loggercolored.IConfig = {
-    INFO: {
-        format: ["DATE", "TYPE", "MSG"],
-        color: {
-            DATE: "bold",
-            TYPE: "blue.bold.bgBlack",
-            MSG: "bold",
-        },
-        type: "INFO",
-    },
-};
-
-const color = new ColoredLogger(config);
-color.log("INFO", "test drive new class logger");
