@@ -1,5 +1,10 @@
-import clc from "cli-color";
-export default class ColoredLogger {
+"use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+const cli_color_1 = __importDefault(require("cli-color"));
+class ColoredLogger {
     fnLog = function (msg) {
         if (typeof msg === "string")
             console.log(msg);
@@ -21,16 +26,16 @@ export default class ColoredLogger {
     log(type, msg) {
         if (type in this.config) {
             // @ts-ignore
-            const color = clc;
+            const color = cli_color_1.default;
             const logMsg = this.config[type]?.color?.MSG
                 ? eval(`color.${this.config[type]?.color?.MSG || "bold"}`)
-                : clc;
+                : cli_color_1.default;
             const logDate = this.config[type]?.color?.DATE
                 ? eval(`color.${this.config[type]?.color?.DATE}`)
-                : clc;
+                : cli_color_1.default;
             const logType = this.config[type]?.color?.TYPE
                 ? eval(`color.${this.config[type]?.color?.TYPE}`)
-                : clc;
+                : cli_color_1.default;
             const logMessage = this.config[type].format.map((item) => {
                 switch (item) {
                     case "TYPE":
@@ -52,17 +57,5 @@ export default class ColoredLogger {
         }
     }
 }
-const config = {
-    INFO: {
-        format: ["DATE", "TYPE", "MSG"],
-        color: {
-            DATE: "bold",
-            TYPE: "blue.bold.bgBlack",
-            MSG: "bold",
-        },
-        type: "INFO",
-    },
-};
-const color = new ColoredLogger(config);
-color.log("INFO", "test drive new class logger");
+exports.default = ColoredLogger;
 //# sourceMappingURL=index.js.map
