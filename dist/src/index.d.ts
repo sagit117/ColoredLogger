@@ -1,13 +1,17 @@
-import { loggercolored } from "./index.d";
-export default class ColoredLogger implements loggercolored.ColoredLogger {
-    private fnLog;
-    private readonly config;
-    constructor(config: loggercolored.IConfig, fnLog?: (msg: string | string[]) => void);
-    /**
-     * Метод логирования
-     * @param type - тип лога
-     * @param msg - сообщение лога
-     */
-    log(type: keyof loggercolored.IConfig, msg: string): string | string[];
+export namespace loggercolored {
+    export interface IConfig {
+        [key: string]: {
+            format: TFormatLogger[],
+            color: {
+                [k in TFormatLogger]?: string
+            },
+            type: string
+        }
+    }
+
+    export abstract class ColoredLogger {
+        log(type: keyof IConfig, msg: string): string | string[]
+    }
+
+    export type TFormatLogger = "DATE" | "MSG" | "TYPE"
 }
-//# sourceMappingURL=index.d.ts.map

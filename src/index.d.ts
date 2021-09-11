@@ -1,6 +1,3 @@
-import ColoredLogger from "./index";
-import clc from "cli-color";
-
 export namespace loggercolored {
     export interface IConfig {
         [key: string]: {
